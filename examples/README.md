@@ -11,6 +11,13 @@
 4. [dialog モーダルの例](#html-4-dialog-モーダルの例)
 5. [アクセシブルなフォーム](#html-5-アクセシブルなフォーム)
 
+### CSS編
+1. [Grid Layoutレイアウト例](#css-1-grid-layoutレイアウト例)
+2. [モダンプロパティ活用例](#css-2-モダンプロパティ活用例)
+3. [視覚効果の例](#css-3-視覚効果の例)
+4. [モダンセレクタの例](#css-4-モダンセレクタの例)
+5. [カスタムフォーム要素](#css-5-カスタムフォーム要素)
+
 ### JavaScript編
 1. [非同期処理の例](#js-1-非同期処理の例)
 2. [Intersection Observer の例](#js-2-intersection-observer-の例)
@@ -939,6 +946,1320 @@ WAI-ARIAを使ったアクセシブルなフォームの実装。
           input.setAttribute('aria-invalid', 'false');
         }
       });
+    });
+  </script>
+</body>
+</html>
+```
+
+---
+
+## CSS編
+
+### CSS-1. Grid Layoutレイアウト例
+
+CSS Grid Layoutを使った実用的なレイアウトパターン。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid Layout 実践例</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* ページ全体のレイアウト */
+    .layout {
+      display: grid;
+      grid-template-columns: 250px 1fr 200px;
+      grid-template-rows: auto 1fr auto;
+      grid-template-areas:
+        "header header  header"
+        "sidebar main   aside"
+        "footer footer  footer";
+      min-height: 100vh;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .header {
+      grid-area: header;
+      background: #2196f3;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .main {
+      grid-area: main;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .aside {
+      grid-area: aside;
+      background: #e3f2fd;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .footer {
+      grid-area: footer;
+      background: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    /* カードグリッド */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      color: #2196f3;
+    }
+
+    .card button {
+      justify-self: end;
+      padding: 8px 16px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* レスポンシブ対応 */
+    @media (width < 1024px) {
+      .layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "header"
+          "main"
+          "sidebar"
+          "aside"
+          "footer";
+      }
+    }
+
+    /* Grid中央揃え */
+    .center-demo {
+      display: grid;
+      place-content: center;
+      min-height: 200px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <header class="header">
+      <h1>Grid Layout デモ</h1>
+      <p>モダンなレイアウトシステム</p>
+    </header>
+
+    <nav class="sidebar">
+      <h2>ナビゲーション</h2>
+      <ul>
+        <li><a href="#home">ホーム</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">サービス</a></li>
+        <li><a href="#contact">お問い合わせ</a></li>
+      </ul>
+    </nav>
+
+    <main class="main">
+      <h2>メインコンテンツ</h2>
+      <p>Grid Layoutを使った実用的なレイアウト例です。</p>
+
+      <div class="center-demo">
+        <div>
+          <h3>Grid中央揃え</h3>
+          <p>place-content: center で簡単に中央揃え</p>
+        </div>
+      </div>
+
+      <h3>カードグリッド（auto-fit）</h3>
+      <div class="cards">
+        <div class="card">
+          <h3>カード 1</h3>
+          <p>レスポンシブに自動調整されるカードレイアウト。画面幅に応じて列数が変わります。</p>
+          <button>詳細</button>
+        </div>
+        <div class="card">
+          <h3>カード 2</h3>
+          <p>minmax(250px, 1fr)により、最小幅を保ちながら柔軟に配置されます。</p>
+          <button>詳細</button>
+        </div>
+        <div class="card">
+          <h3>カード 3</h3>
+          <p>JavaScriptなしで、CSSのみで実装できます。</p>
+          <button>詳細</button>
+        </div>
+      </div>
+    </main>
+
+    <aside class="aside">
+      <h2>サイドバー</h2>
+      <p>追加情報をここに表示</p>
+      <ul>
+        <li>お知らせ 1</li>
+        <li>お知らせ 2</li>
+        <li>お知らせ 3</li>
+      </ul>
+    </aside>
+
+    <footer class="footer">
+      <p>&copy; 2024 Grid Layout Demo</p>
+    </footer>
+  </div>
+</body>
+</html>
+```
+
+### CSS-2. モダンプロパティ活用例
+
+ビューポート単位、clamp関数、論理プロパティの活用例。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>モダンプロパティ活用例</title>
+  <style>
+    :root {
+      /* clamp関数でレスポンシブなフォントサイズ */
+      --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+      --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
+      --font-size-lg: clamp(1.25rem, 1.1rem + 0.75vw, 1.75rem);
+      --font-size-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+
+      /* スペーシング */
+      --space-sm: clamp(0.75rem, 0.6rem + 0.75vw, 1.25rem);
+      --space-md: clamp(1rem, 0.8rem + 1vw, 1.75rem);
+      --space-lg: clamp(1.5rem, 1.2rem + 1.5vw, 2.5rem);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      font-size: var(--font-size-base);
+      /* テキストの折り返し制御 */
+      overflow-wrap: anywhere;
+      word-break: normal;
+      line-break: strict;
+    }
+
+    /* ヒーローセクション（svh使用） */
+    .hero {
+      height: 100svh;  /* Small Viewport Height */
+      display: grid;
+      place-content: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding-inline: var(--space-md);  /* 論理プロパティ */
+    }
+
+    .hero h1 {
+      font-size: var(--font-size-xl);
+      margin-block-end: var(--space-md);  /* 論理プロパティ */
+    }
+
+    .hero p {
+      font-size: var(--font-size-lg);
+    }
+
+    /* コンテナ（論理プロパティ使用） */
+    .container {
+      max-inline-size: 1200px;  /* max-width */
+      margin-inline: auto;       /* margin-left/right: auto */
+      padding-inline: var(--space-md);
+      padding-block: var(--space-lg);
+    }
+
+    .section {
+      margin-block-end: var(--space-lg);
+    }
+
+    .section h2 {
+      font-size: var(--font-size-lg);
+      margin-block-end: var(--space-sm);
+      color: #2196f3;
+    }
+
+    /* currentColorの活用 */
+    .icon-button {
+      color: #2196f3;
+      padding: var(--space-sm);
+      border: 2px solid currentColor;  /* 自動的に#2196f3になる */
+      border-radius: 8px;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-button:hover {
+      color: #1976d2;
+      /* borderとSVGの色も自動的に変わる */
+      background: currentColor;
+      color: white;
+    }
+
+    .icon-button svg {
+      fill: currentColor;
+    }
+
+    /* カード */
+    .card {
+      background: white;
+      padding-block: var(--space-md);
+      padding-inline: var(--space-md);
+      border-radius: 12px;
+      border-inline-start: 4px solid #2196f3;  /* 論理プロパティ */
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-block-end: var(--space-md);
+    }
+
+    .info-box {
+      background: #e3f2fd;
+      padding: var(--space-md);
+      border-radius: 8px;
+      margin-block: var(--space-md);
+    }
+
+    .info-box code {
+      background: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #2196f3;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div>
+      <h1>モダンCSS プロパティ</h1>
+      <p>ビューポート単位・clamp・論理プロパティ</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="section">
+      <h2>ビューポート単位（svh）</h2>
+      <div class="card">
+        <p>上のヒーローセクションは <code>height: 100svh;</code> を使用しています。</p>
+        <p>モバイルブラウザでアドレスバーが表示されている状態でも、画面いっぱいに表示されます。</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>clamp関数</h2>
+      <div class="card">
+        <p>このページのフォントサイズとスペーシングは、すべて <code>clamp()</code> 関数を使用しています。</p>
+        <p>ブラウザの幅を変更すると、滑らかにサイズが変化します。メディアクエリは不要です。</p>
+        <div class="info-box">
+          <p><strong>例：</strong></p>
+          <p><code>font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);</code></p>
+          <p>最小1rem、最大1.25remの範囲で、ビューポート幅に応じて変化します。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>論理プロパティ</h2>
+      <div class="card">
+        <p><code>margin-inline</code>、<code>padding-block</code>などの論理プロパティを使用しています。</p>
+        <p>テキストの流れる方向に基づいた指定なので、国際化対応が容易です。</p>
+        <div class="info-box">
+          <p><strong>物理プロパティ vs 論理プロパティ：</strong></p>
+          <ul>
+            <li><code>margin-left/right</code> → <code>margin-inline</code></li>
+            <li><code>margin-top/bottom</code> → <code>margin-block</code></li>
+            <li><code>width</code> → <code>inline-size</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>currentColorの活用</h2>
+      <button class="icon-button">
+        <svg width="20" height="20" viewBox="0 0 20 20">
+          <path d="M10 0L12.245 7.755L20 10L12.245 12.245L10 20L7.755 12.245L0 10L7.755 7.755L10 0Z"/>
+        </svg>
+        ホバーしてみてください
+      </button>
+      <div class="info-box" style="margin-top: 1rem;">
+        <p>ボタンの <code>border</code> と SVGの <code>fill</code> に <code>currentColor</code> を使用。</p>
+        <p><code>color</code> プロパティを変更するだけで、すべての色が連動します。</p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+```
+
+### CSS-3. 視覚効果の例
+
+transform独立プロパティ、filter、mix-blend-modeの活用例。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS視覚効果の例</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 40px;
+    }
+
+    .demo-section {
+      background: white;
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .demo-section h2 {
+      color: #2196f3;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #2196f3;
+      padding-bottom: 10px;
+    }
+
+    /* 1. transform独立プロパティ */
+    .transform-demo {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .transform-card {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 12px;
+      display: grid;
+      place-content: center;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+
+      /* 独立プロパティを使用 */
+      translate: 0 0;
+      rotate: 0deg;
+      scale: 1;
+
+      /* 個別にtransition設定 */
+      transition:
+        translate 0.3s ease,
+        rotate 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        scale 0.2s ease-out;
+    }
+
+    .transform-card:hover {
+      translate: 0 -10px;
+      rotate: 5deg;
+      scale: 1.1;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    /* 2. filterプロパティ */
+    .filter-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    .filter-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .filter-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: filter 0.3s ease;
+    }
+
+    .filter-card:nth-child(1) img {
+      filter: grayscale(1);
+    }
+
+    .filter-card:nth-child(1):hover img {
+      filter: grayscale(0);
+    }
+
+    .filter-card:nth-child(2) img {
+      filter: brightness(1);
+    }
+
+    .filter-card:nth-child(2):hover img {
+      filter: brightness(1.3) contrast(1.2);
+    }
+
+    .filter-card:nth-child(3) img {
+      filter: sepia(0);
+    }
+
+    .filter-card:nth-child(3):hover img {
+      filter: sepia(0.8);
+    }
+
+    .filter-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* 3. mix-blend-mode */
+    .blend-demo {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .blend-card {
+      position: relative;
+      height: 200px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      border-radius: 12px;
+      display: grid;
+      place-content: center;
+      overflow: hidden;
+    }
+
+    .blend-text {
+      font-size: 48px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .blend-card:nth-child(1) .blend-text {
+      mix-blend-mode: overlay;
+    }
+
+    .blend-card:nth-child(2) .blend-text {
+      mix-blend-mode: multiply;
+    }
+
+    .blend-card:nth-child(3) .blend-text {
+      mix-blend-mode: screen;
+    }
+
+    /* 4. clip-path */
+    .clippath-demo {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .clippath-shape {
+      width: 150px;
+      height: 150px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      transition: clip-path 0.3s ease;
+    }
+
+    .circle {
+      clip-path: circle(50%);
+    }
+
+    .circle:hover {
+      clip-path: circle(70%);
+    }
+
+    .triangle {
+      clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    }
+
+    .triangle:hover {
+      clip-path: polygon(50% 20%, 20% 80%, 80% 80%);
+    }
+
+    .hexagon {
+      clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    }
+
+    .hexagon:hover {
+      clip-path: polygon(30% 10%, 70% 10%, 90% 50%, 70% 90%, 30% 90%, 10% 50%);
+    }
+
+    .star {
+      clip-path: polygon(
+        50% 0%, 61% 35%, 98% 35%, 68% 57%,
+        79% 91%, 50% 70%, 21% 91%, 32% 57%,
+        2% 35%, 39% 35%
+      );
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS 視覚効果デモ</h1>
+
+  <!-- Transform独立プロパティ -->
+  <div class="demo-section">
+    <h2>1. Transform独立プロパティ</h2>
+    <p>translate、rotate、scaleを個別に制御。ホバーしてみてください。</p>
+    <div class="transform-demo">
+      <div class="transform-card">カード 1</div>
+      <div class="transform-card">カード 2</div>
+      <div class="transform-card">カード 3</div>
+      <div class="transform-card">カード 4</div>
+    </div>
+  </div>
+
+  <!-- Filter -->
+  <div class="demo-section">
+    <h2>2. Filterプロパティ</h2>
+    <p>ホバーでフィルター効果が変化します。</p>
+    <div class="filter-demo">
+      <div class="filter-card">
+        <img src="https://picsum.photos/400/300?random=1" alt="画像1">
+        <div class="filter-label">Grayscale → Color</div>
+      </div>
+      <div class="filter-card">
+        <img src="https://picsum.photos/400/300?random=2" alt="画像2">
+        <div class="filter-label">Brightness + Contrast</div>
+      </div>
+      <div class="filter-card">
+        <img src="https://picsum.photos/400/300?random=3" alt="画像3">
+        <div class="filter-label">Sepia</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mix Blend Mode -->
+  <div class="demo-section">
+    <h2>3. Mix Blend Mode</h2>
+    <p>異なるブレンドモードの比較。</p>
+    <div class="blend-demo">
+      <div class="blend-card">
+        <div class="blend-text">OVERLAY</div>
+      </div>
+      <div class="blend-card">
+        <div class="blend-text">MULTIPLY</div>
+      </div>
+      <div class="blend-card">
+        <div class="blend-text">SCREEN</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Clip Path -->
+  <div class="demo-section">
+    <h2>4. Clip Path</h2>
+    <p>様々な形状にクリッピング。ホバーで変形します。</p>
+    <div class="clippath-demo">
+      <div class="clippath-shape circle"></div>
+      <div class="clippath-shape triangle"></div>
+      <div class="clippath-shape hexagon"></div>
+      <div class="clippath-shape star"></div>
+    </div>
+  </div>
+</body>
+</html>
+```
+
+### CSS-4. モダンセレクタの例
+
+:has()、:is()、:where()の実践例。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>モダンセレクタの例</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .section {
+      background: white;
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .section h2 {
+      color: #2196f3;
+      margin-bottom: 20px;
+    }
+
+    /* 1. :has()セレクタ */
+
+    /* 画像を含むカードのみスタイル適用 */
+    .card:has(img) {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    /* 画像を含まないカードは別スタイル */
+    .card:not(:has(img)) {
+      display: block;
+      text-align: center;
+    }
+
+    .card {
+      padding: 20px;
+      margin: 15px 0;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* フォーカスを含むフォームにスタイル適用 */
+    form:has(input:focus) {
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.3);
+    }
+
+    form {
+      padding: 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      transition: box-shadow 0.3s;
+    }
+
+    /* チェックされたチェックボックスを含むラベル */
+    label:has(input[type="checkbox"]:checked) {
+      background: #e8f5e9;
+      border-color: #4caf50;
+    }
+
+    label {
+      display: block;
+      padding: 12px;
+      margin: 10px 0;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    /* 2. :is()セレクタ */
+
+    /* 複数の見出しに一括スタイル適用 */
+    :is(h1, h2, h3, h4) {
+      font-family: 'Georgia', serif;
+      line-height: 1.3;
+    }
+
+    /* 複数のコンテナ内のリンク */
+    :is(.header, .sidebar, .footer) a {
+      color: #2196f3;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    :is(.header, .sidebar, .footer) a:hover {
+      color: #1976d2;
+      text-decoration: underline;
+    }
+
+    /* 3. :where()セレクタ */
+
+    /* 詳細度0なので簡単に上書き可能 */
+    :where(ul, ol) {
+      padding-left: 20px;
+      margin: 10px 0;
+    }
+
+    /* リセット用スタイル（詳細度0） */
+    :where(button, input, select) {
+      font-family: inherit;
+      font-size: inherit;
+    }
+
+    /* 通常のボタンスタイル（簡単に上書きできる） */
+    button {
+      padding: 10px 20px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin: 5px;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 4px;
+      width: 100%;
+      margin: 5px 0;
+      transition: border-color 0.3s;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #2196f3;
+    }
+
+    .demo-area {
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+    .info {
+      background: #e3f2fd;
+      padding: 15px;
+      border-left: 4px solid #2196f3;
+      margin: 15px 0;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>モダンCSSセレクタ デモ</h1>
+
+  <!-- :has()のデモ -->
+  <div class="section">
+    <h2>1. :has()セレクタ</h2>
+    <div class="info">
+      <p><strong>:has()</strong> - 特定の子要素を持つ親要素を選択</p>
+    </div>
+
+    <h3>カードのレイアウト（画像の有無で自動切り替え）</h3>
+    <div class="card">
+      <img src="https://picsum.photos/100/100?random=1" alt="画像">
+      <div>
+        <h4>画像付きカード</h4>
+        <p>.card:has(img) により、フレックスレイアウトが適用されます。</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h4>画像なしカード</h4>
+      <p>.card:not(:has(img)) により、ブロックレイアウトで中央揃えになります。</p>
+    </div>
+
+    <h3>フォームのフォーカス検出</h3>
+    <div class="demo-area">
+      <form>
+        <label>お名前</label>
+        <input type="text" placeholder="入力欄をクリックしてみてください">
+        <label>メール</label>
+        <input type="email" placeholder="フォーム全体にスタイルが適用されます">
+      </form>
+      <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        form:has(input:focus) で、入力中のフォーム全体にスタイル適用
+      </p>
+    </div>
+
+    <h3>チェックボックスの状態検出</h3>
+    <div class="demo-area">
+      <label>
+        <input type="checkbox">
+        タスク1を完了する
+      </label>
+      <label>
+        <input type="checkbox">
+        タスク2を完了する
+      </label>
+      <label>
+        <input type="checkbox">
+        タスク3を完了する
+      </label>
+      <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        label:has(input:checked) で、チェックされたラベルの背景色が変わります
+      </p>
+    </div>
+  </div>
+
+  <!-- :is()のデモ -->
+  <div class="section">
+    <h2>2. :is()セレクタ</h2>
+    <div class="info">
+      <p><strong>:is()</strong> - 複数のセレクタを一括指定</p>
+    </div>
+
+    <div class="demo-area">
+      <p>すべての見出しに統一フォント（Georgia）が適用されています：</p>
+      <h3>見出し3のサンプル</h3>
+      <h4>見出し4のサンプル</h4>
+      <p style="margin-top: 10px; font-size: 14px; color: #666;">
+        :is(h1, h2, h3, h4) により、一括でスタイル適用
+      </p>
+    </div>
+  </div>
+
+  <!-- :where()のデモ -->
+  <div class="section">
+    <h2>3. :where()セレクタ</h2>
+    <div class="info">
+      <p><strong>:where()</strong> - 詳細度0で簡単に上書き可能</p>
+    </div>
+
+    <div class="demo-area">
+      <p>:where()で設定されたスタイルは、詳細度が0なので簡単に上書きできます。</p>
+      <ul>
+        <li>リスト項目1</li>
+        <li>リスト項目2</li>
+        <li>リスト項目3</li>
+      </ul>
+      <p style="font-size: 14px; color: #666;">
+        :where(ul, ol) でデフォルトスタイルを設定し、必要に応じて上書き
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+```
+
+### CSS-5. カスタムフォーム要素
+
+アクセシブルなカスタムチェックボックスとラジオボタン。
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>カスタムフォーム要素</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    .form-container {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .form-section {
+      margin: 30px 0;
+    }
+
+    .form-section h2 {
+      color: #2196f3;
+      margin-bottom: 20px;
+      font-size: 20px;
+    }
+
+    /* Visually Hiddenパターン */
+    input[type="checkbox"],
+    input[type="radio"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* カスタムチェックボックス */
+    .checkbox-wrapper {
+      margin: 15px 0;
+    }
+
+    input[type="checkbox"] + label {
+      position: relative;
+      padding-left: 35px;
+      cursor: pointer;
+      display: inline-block;
+      line-height: 24px;
+      user-select: none;
+      transition: color 0.3s;
+    }
+
+    /* チェックボックスの外枠 */
+    input[type="checkbox"] + label::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #999;
+      border-radius: 4px;
+      background: white;
+      transition: all 0.3s;
+    }
+
+    /* チェックマーク */
+    input[type="checkbox"] + label::after {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 4px;
+      width: 8px;
+      height: 14px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      transform: rotate(45deg) scale(0);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* チェック状態 */
+    input[type="checkbox"]:checked + label::before {
+      background: #2196f3;
+      border-color: #2196f3;
+    }
+
+    input[type="checkbox"]:checked + label::after {
+      transform: rotate(45deg) scale(1);
+    }
+
+    /* ホバー */
+    input[type="checkbox"]:not(:disabled) + label:hover::before {
+      border-color: #2196f3;
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    }
+
+    /* フォーカス（キーボード操作時のみ） */
+    input[type="checkbox"]:focus-visible + label::before {
+      outline: 3px solid #2196f3;
+      outline-offset: 2px;
+    }
+
+    /* 無効状態 */
+    input[type="checkbox"]:disabled + label {
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    input[type="checkbox"]:disabled + label::before {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    /* カスタムラジオボタン */
+    .radio-wrapper {
+      margin: 15px 0;
+    }
+
+    input[type="radio"] + label {
+      position: relative;
+      padding-left: 35px;
+      cursor: pointer;
+      display: inline-block;
+      line-height: 24px;
+      user-select: none;
+    }
+
+    /* ラジオボタンの外側の円 */
+    input[type="radio"] + label::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      border: 2px solid #999;
+      border-radius: 50%;
+      background: white;
+      transition: all 0.3s;
+    }
+
+    /* ラジオボタンの内側の円 */
+    input[type="radio"] + label::after {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 7px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #2196f3;
+      transform: scale(0);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    /* 選択状態 */
+    input[type="radio"]:checked + label::before {
+      border-color: #2196f3;
+    }
+
+    input[type="radio"]:checked + label::after {
+      transform: scale(1);
+    }
+
+    /* ホバー */
+    input[type="radio"]:not(:disabled) + label:hover::before {
+      border-color: #2196f3;
+      box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
+    }
+
+    /* フォーカス */
+    input[type="radio"]:focus-visible + label::before {
+      outline: 3px solid #2196f3;
+      outline-offset: 2px;
+    }
+
+    /* 無効状態 */
+    input[type="radio"]:disabled + label {
+      color: #999;
+      cursor: not-allowed;
+    }
+
+    input[type="radio"]:disabled + label::before {
+      background: #f5f5f5;
+      border-color: #ddd;
+    }
+
+    .note {
+      background: #e3f2fd;
+      padding: 15px;
+      border-left: 4px solid #2196f3;
+      margin: 20px 0;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:hover {
+      background: #1976d2;
+    }
+
+    .submit-btn:focus-visible {
+      outline: 3px solid #2196f3;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>アクセシブルなカスタムフォーム要素</h1>
+
+  <div class="note">
+    <p><strong>アクセシビリティ重視の実装：</strong></p>
+    <ul style="margin: 10px 0; padding-left: 20px;">
+      <li>✅ display: noneを使わない（Visually Hidden）</li>
+      <li>✅ キーボード操作対応（Tab、Space、Arrow）</li>
+      <li>✅ スクリーンリーダー対応</li>
+      <li>✅ フォーカス表示（:focus-visible）</li>
+      <li>✅ 無効状態の視覚的表現</li>
+    </ul>
+  </div>
+
+  <div class="form-container">
+    <form>
+      <!-- チェックボックス -->
+      <div class="form-section">
+        <h2>チェックボックス</h2>
+
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="checkbox1" name="interests" value="web">
+          <label for="checkbox1">Web開発に興味がある</label>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="checkbox2" name="interests" value="design">
+          <label for="checkbox2">デザインに興味がある</label>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="checkbox3" name="interests" value="backend">
+          <label for="checkbox3">バックエンド開発に興味がある</label>
+        </div>
+
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="checkbox4" name="interests" value="disabled" disabled>
+          <label for="checkbox4">無効状態のチェックボックス</label>
+        </div>
+      </div>
+
+      <!-- ラジオボタン -->
+      <div class="form-section">
+        <h2>ラジオボタン</h2>
+
+        <fieldset style="border: none; padding: 0;">
+          <legend style="font-weight: bold; margin-bottom: 10px;">配送方法を選択</legend>
+
+          <div class="radio-wrapper">
+            <input type="radio" id="radio1" name="shipping" value="standard" checked>
+            <label for="radio1">通常配送（無料・3〜5日）</label>
+          </div>
+
+          <div class="radio-wrapper">
+            <input type="radio" id="radio2" name="shipping" value="express">
+            <label for="radio2">お急ぎ便（500円・翌日配送）</label>
+          </div>
+
+          <div class="radio-wrapper">
+            <input type="radio" id="radio3" name="shipping" value="premium">
+            <label for="radio3">プレミアム配送（1,000円・当日配送）</label>
+          </div>
+
+          <div class="radio-wrapper">
+            <input type="radio" id="radio4" name="shipping" value="disabled" disabled>
+            <label for="radio4">無効状態のラジオボタン</label>
+          </div>
+        </fieldset>
+      </div>
+
+      <!-- 利用規約 -->
+      <div class="form-section">
+        <div class="checkbox-wrapper">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">
+            <a href="#" style="color: #2196f3;">利用規約</a>に同意する（必須）
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">送信する</button>
+    </form>
+  </div>
+
+  <div class="note" style="margin-top: 30px;">
+    <p><strong>キーボード操作：</strong></p>
+    <ul style="margin: 10px 0; padding-left: 20px;">
+      <li><kbd>Tab</kbd> - 次の要素へ移動</li>
+      <li><kbd>Shift + Tab</kbd> - 前の要素へ移動</li>
+      <li><kbd>Space</kbd> - チェックボックスの切り替え</li>
+      <li><kbd>↑/↓</kbd> - ラジオボタンのグループ内移動</li>
+    </ul>
+  </div>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const interests = Array.from(document.querySelectorAll('input[name="interests"]:checked'))
+        .map(cb => cb.nextElementSibling.textContent);
+
+      const shipping = document.querySelector('input[name="shipping"]:checked')
+        .nextElementSibling.textContent;
+
+      const terms = document.getElementById('terms').checked;
+
+      if (!terms) {
+        alert('利用規約に同意してください');
+        return;
+      }
+
+      alert(`選択内容:\n\n興味: ${interests.join(', ') || 'なし'}\n配送: ${shipping}`);
     });
   </script>
 </body>
