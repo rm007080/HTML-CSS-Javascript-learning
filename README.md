@@ -18,6 +18,58 @@
 
 ## 📖 教材の構成
 
+### HTML編
+
+#### [1. HTML 画像最適化編](./docs/html/01-image-optimization/README.md)
+
+画像のパフォーマンス最適化技術を学びます。
+
+- レスポンシブ画像（srcset/sizes）
+- picture要素とモダンフォーマット（AVIF/WebP）
+- 遅延読み込み（lazy loading）
+- decoding属性
+- 画像の幅と高さの指定
+- Core Web Vitals対応
+
+**学習時間の目安**: 2-3時間
+
+#### [2. HTML セマンティック要素編](./docs/html/02-semantic-elements/README.md)
+
+モダンなHTMLのセマンティック要素を学びます。
+
+- details/summary（アコーディオン）
+- dialog（モーダル）
+- hgroup（見出しグループ）
+- search（検索）
+- セマンティックHTMLの重要性
+
+**学習時間の目安**: 2-3時間
+
+#### [3. HTML アクセシビリティ編](./docs/html/03-accessibility/README.md)
+
+すべてのユーザーが利用できるWebサイトを作る技術を学びます。
+
+- WAI-ARIAの基礎
+- aria-label、aria-labelledby、aria-describedby
+- aria-current、aria-haspopup、aria-expanded
+- WCAGガイドライン
+- アクセシブルなタブUI
+- 実践的なチェックリスト
+
+**学習時間の目安**: 3-4時間
+
+#### [4. HTML パフォーマンス編](./docs/html/04-performance/README.md)
+
+Webサイトのパフォーマンスを最大化する技術を学びます。
+
+- rel="preload"によるリソース先読み
+- Core Web Vitalsの最適化（LCP/FID/CLS）
+- サイト高速化の10の手法
+- パフォーマンス測定ツール
+- ベストプラクティス
+
+**学習時間の目安**: 2-3時間
+
 ### JavaScript編
 
 #### [1. JavaScript 基礎編](./docs/javascript/01-basics/README.md)
@@ -77,6 +129,14 @@ DOM操作とモダンなブラウザAPIを学びます。
 
 各セクションで学んだ内容を実際に動かせるコード例集。
 
+**HTML編：**
+- レスポンシブ画像の例（srcset/sizes）
+- picture要素とモダンフォーマット
+- detailsアコーディオンの例
+- dialogモーダルの例
+- アクセシブルなフォームの例
+
+**JavaScript編：**
 - 非同期処理の例（Fetch API）
 - Intersection Observer の例（フェードインアニメーション）
 - matchMedia の例（レスポンシブメニュー）
@@ -87,25 +147,45 @@ DOM操作とモダンなブラウザAPIを学びます。
 
 ### 推奨学習順序
 
-1. **JavaScript 基礎編** から始める
+**初心者向けルート：**
+
+1. **HTML 画像最適化編** でWebパフォーマンスの基礎を学ぶ
+   - レスポンシブ画像の実装
+   - モダンフォーマットの活用
+
+2. **HTML セマンティック要素編** で正しいマークアップを学ぶ
+   - details/summary、dialog要素の活用
+   - セマンティックHTMLの重要性
+
+3. **JavaScript 基礎編** でモダンな構文を学ぶ
    - ES2015の基本構文をしっかり理解する
    - 特に変数宣言、アロー関数、分割代入は重要
 
-2. **非同期処理編** に進む
+4. **非同期処理編** でAPI通信を学ぶ
    - Promiseの仕組みを理解する
    - async/awaitで実際のAPI通信を試す
 
-3. **DOM操作とイベント処理編** を学ぶ
+5. **DOM操作とイベント処理編** でインタラクティブな実装を学ぶ
    - Intersection Observerで実用的な機能を実装
    - matchMediaでレスポンシブ対応を理解
 
-4. **実践的なテクニック編** で応用力を身につける
-   - モジュールシステムでコードを整理
-   - パフォーマンス最適化の手法を学ぶ
+6. **アクセシビリティ編** ですべてのユーザーに配慮する
+   - WAI-ARIAの基礎を学ぶ
+   - アクセシブルなUI実装
 
-5. **実践コード例** で手を動かす
+7. **パフォーマンス編・実践的なテクニック編** で総仕上げ
+   - Core Web Vitals最適化
+   - モジュールシステムでコードを整理
+
+8. **実践コード例** で手を動かす
    - 実際にコードを動かして理解を深める
    - 自分なりにカスタマイズして試す
+
+**経験者向けルート：**
+
+1. 関心のある分野から始める
+2. 不足している知識を補う
+3. 実践コード例で統合的に学ぶ
 
 ### 学習のコツ
 
@@ -201,17 +281,28 @@ MITライセンス - 詳細は [LICENSE](./LICENSE) ファイルを参照して�
 
 この教材を修了すると、以下のことができるようになります：
 
+**HTML編：**
+✅ レスポンシブ画像を適切に実装できる（srcset/sizes/picture）
+✅ モダンな画像フォーマット（AVIF/WebP）を活用できる
+✅ details/dialog などのセマンティック要素を使いこなせる
+✅ WAI-ARIAを使ったアクセシブルなWebサイトを作成できる
+✅ Core Web Vitalsを最適化できる
+✅ rel="preload"などのパフォーマンス最適化技術を活用できる
+
+**JavaScript編：**
 ✅ モダンなJavaScriptの構文を理解し、使いこなせる
 ✅ 非同期処理（Promise、async/await）を正しく扱える
 ✅ Fetch APIでサーバーと通信できる
 ✅ Intersection Observer APIでスクロール連動の機能を実装できる
-✅ レスポンシブ対応のJavaScriptコードが書ける
+✅ matchMediaでレスポンシブ対応のコードが書ける
 ✅ モジュールシステムでコードを整理できる
 ✅ パフォーマンスを意識したコードが書ける
 ✅ エラーハンドリングとデバッグができる
 
 ## さあ、始めましょう！
 
-まずは [JavaScript 基礎編](./docs/javascript/01-basics/README.md) から学習を始めてください。
+初学者の方は [HTML 画像最適化編](./docs/html/01-image-optimization/README.md) から、
+
+JavaScriptを集中的に学びたい方は [JavaScript 基礎編](./docs/javascript/01-basics/README.md) から始めてください。
 
 頑張ってください！ 🚀
