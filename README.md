@@ -22,7 +22,7 @@
 
 ### HTML編
 
-#### [1. HTML 画像最適化編](./docs/html/01-image-optimization/README.md)
+#### [1. HTML 画像最適化編](./docs/01-html/01-image-optimization/README.md)
 
 画像のパフォーマンス最適化技術を学びます。
 
@@ -35,7 +35,7 @@
 
 **学習時間の目安**: 2-3時間
 
-#### [2. HTML セマンティック要素編](./docs/html/02-semantic-elements/README.md)
+#### [2. HTML セマンティック要素編](./docs/01-html/02-semantic-elements/README.md)
 
 モダンなHTMLのセマンティック要素を学びます。
 
@@ -47,7 +47,7 @@
 
 **学習時間の目安**: 2-3時間
 
-#### [3. HTML アクセシビリティ編](./docs/html/03-accessibility/README.md)
+#### [3. HTML アクセシビリティ編](./docs/01-html/03-accessibility/README.md)
 
 すべてのユーザーが利用できるWebサイトを作る技術を学びます。
 
@@ -60,7 +60,7 @@
 
 **学習時間の目安**: 3-4時間
 
-#### [4. HTML パフォーマンス編](./docs/html/04-performance/README.md)
+#### [4. HTML パフォーマンス編](./docs/01-html/04-performance/README.md)
 
 Webサイトのパフォーマンスを最大化する技術を学びます。
 
@@ -74,7 +74,7 @@ Webサイトのパフォーマンスを最大化する技術を学びます。
 
 ### CSS編
 
-#### [1. CSS Layout編](./docs/css/01-layout/README.md)
+#### [1. CSS Layout編](./docs/02-css/01-layout/README.md)
 
 モダンなレイアウト技術を学びます。
 
@@ -88,7 +88,7 @@ Webサイトのパフォーマンスを最大化する技術を学びます。
 
 **学習時間の目安**: 4-5時間
 
-#### [2. CSS モダンプロパティ編](./docs/css/02-modern-properties/README.md)
+#### [2. CSS モダンプロパティ編](./docs/02-css/02-modern-properties/README.md)
 
 モダンCSSの新しいプロパティと単位を学びます。
 
@@ -100,7 +100,7 @@ Webサイトのパフォーマンスを最大化する技術を学びます。
 
 **学習時間の目安**: 3-4時間
 
-#### [3. CSS 視覚効果編](./docs/css/03-visual-effects/README.md)
+#### [3. CSS 視覚効果編](./docs/02-css/03-visual-effects/README.md)
 
 CSSで実現できる視覚効果を学びます。
 
@@ -112,7 +112,7 @@ CSSで実現できる視覚効果を学びます。
 
 **学習時間の目安**: 3-4時間
 
-#### [4. CSS セレクタとアクセシビリティ編](./docs/css/04-selectors-accessibility/README.md)
+#### [4. CSS セレクタとアクセシビリティ編](./docs/02-css/04-selectors-accessibility/README.md)
 
 モダンなセレクタとアクセシビリティを学びます。
 
@@ -127,7 +127,7 @@ CSSで実現できる視覚効果を学びます。
 
 ### JavaScript編
 
-#### [1. JavaScript 基礎編](./docs/javascript/01-basics/README.md)
+#### [1. JavaScript 基礎編](./docs/03-javascript/01-basics/README.md)
 
 ES2015以降のモダンな構文を学びます。
 
@@ -141,7 +141,7 @@ ES2015以降のモダンな構文を学びます。
 
 **学習時間の目安**: 3-4時間
 
-#### [2. 非同期処理編](./docs/javascript/02-async/README.md)
+#### [2. 非同期処理編](./docs/03-javascript/02-async/README.md)
 
 JavaScriptの非同期処理を基礎から実践まで学びます。
 
@@ -155,7 +155,7 @@ JavaScriptの非同期処理を基礎から実践まで学びます。
 
 **学習時間の目安**: 4-5時間
 
-#### [3. DOM操作とイベント処理編](./docs/javascript/03-dom-events/README.md)
+#### [3. DOM操作とイベント処理編](./docs/03-javascript/03-dom-events/README.md)
 
 DOM操作とモダンなブラウザAPIを学びます。
 
@@ -167,7 +167,7 @@ DOM操作とモダンなブラウザAPIを学びます。
 
 **学習時間の目安**: 3-4時間
 
-#### [4. 実践的なテクニック編](./docs/javascript/04-practical/README.md)
+#### [4. 実践的なテクニック編](./docs/03-javascript/04-practical/README.md)
 
 実務で役立つテクニックとベストプラクティスを学びます。
 
@@ -211,53 +211,65 @@ DOM操作とモダンなブラウザAPIを学びます。
 
 **初心者向けルート：**
 
+Web開発の基本構造である **HTML → CSS → JavaScript** の順に学習を進めます。
+
+#### HTML編（基礎固め）
+
 1. **HTML 画像最適化編** でWebパフォーマンスの基礎を学ぶ
-   - レスポンシブ画像の実装
-   - モダンフォーマットの活用
+   - レスポンシブ画像の実装（srcset/sizes）
+   - モダンフォーマット（AVIF/WebP）の活用
 
 2. **HTML セマンティック要素編** で正しいマークアップを学ぶ
    - details/summary、dialog要素の活用
    - セマンティックHTMLの重要性
 
-3. **CSS Layout編** でモダンなレイアウトを学ぶ
+3. **HTML アクセシビリティ編** ですべてのユーザーに配慮する
+   - WAI-ARIAの基礎を学ぶ
+   - アクセシブルなマークアップの実装
+
+4. **HTML パフォーマンス編** でWebサイトを高速化する
+   - rel="preload"によるリソース先読み
+   - Core Web Vitalsの基本理解
+
+#### CSS編（見た目とレイアウト）
+
+5. **CSS Layout編** でモダンなレイアウトを学ぶ
    - CSS Grid Layoutの基礎から実践
    - レスポンシブレイアウトの実装
 
-4. **CSS モダンプロパティ編** で新しいCSSを学ぶ
-   - ビューポート単位とclamp関数
+6. **CSS モダンプロパティ編** で新しいCSSを学ぶ
+   - ビューポート単位（svh/dvh/lvh）とclamp関数
    - 論理プロパティで国際化対応
 
-5. **JavaScript 基礎編** でモダンな構文を学ぶ
-   - ES2015の基本構文をしっかり理解する
-   - 特に変数宣言、アロー関数、分割代入は重要
-
-6. **非同期処理編** でAPI通信を学ぶ
-   - Promiseの仕組みを理解する
-   - async/awaitで実際のAPI通信を試す
-
-7. **DOM操作とイベント処理編** でインタラクティブな実装を学ぶ
-   - Intersection Observerで実用的な機能を実装
-   - matchMediaでレスポンシブ対応を理解
-
-8. **CSS 視覚効果編** でデザイン表現を学ぶ
+7. **CSS 視覚効果編** でデザイン表現を学ぶ
    - transform、filter、mix-blend-modeの活用
    - アニメーションの実装
 
-9. **CSS セレクタとアクセシビリティ編** で高度なCSSを学ぶ
+8. **CSS セレクタとアクセシビリティ編** で高度なCSSを学ぶ
    - :has()、:is()、:where()の活用
-   - アクセシブルなフォーム要素
+   - アクセシブルなフォーム要素のスタイリング
 
-10. **アクセシビリティ編** ですべてのユーザーに配慮する
-    - WAI-ARIAの基礎を学ぶ
-    - アクセシブルなUI実装
+#### JavaScript編（動的な機能）
 
-11. **パフォーマンス編・実践的なテクニック編** で総仕上げ
-    - Core Web Vitals最適化
+9. **JavaScript 基礎編** でモダンな構文を学ぶ
+   - ES2015以降の基本構文をしっかり理解する
+   - 変数宣言、アロー関数、分割代入などの重要概念
+
+10. **JavaScript 非同期処理編** でAPI通信を学ぶ
+    - Promiseの仕組みを理解する
+    - async/awaitで実際のAPI通信を試す
+
+11. **JavaScript DOM操作とイベント処理編** でインタラクティブな実装を学ぶ
+    - Intersection Observerで実用的な機能を実装
+    - matchMediaでレスポンシブ対応を理解
+
+12. **JavaScript 実践的なテクニック編** で総仕上げ
     - モジュールシステムでコードを整理
+    - パフォーマンス最適化とエラーハンドリング
 
-12. **実践コード例** で手を動かす
+13. **実践コード例** で手を動かす
     - 実際にコードを動かして理解を深める
-    - 自分なりにカスタマイズして試す
+    - 学んだ技術を統合して小さなプロジェクトを作成
 
 **経験者向けルート：**
 
@@ -367,6 +379,16 @@ MITライセンス - 詳細は [LICENSE](./LICENSE) ファイルを参照して�
 ✅ Core Web Vitalsを最適化できる
 ✅ rel="preload"などのパフォーマンス最適化技術を活用できる
 
+**CSS編：**
+✅ CSS Grid Layoutでモダンなレイアウトを実装できる
+✅ CSS Subgridで複雑なグリッドレイアウトを構築できる
+✅ ビューポート単位（svh/dvh/lvh）を使いこなせる
+✅ clamp関数で流動的なサイズ指定ができる
+✅ 論理プロパティで国際化対応のスタイルが書ける
+✅ transform、filter、mix-blend-modeで視覚効果を実装できる
+✅ :has()、:is()、:where()などのモダンセレクタを活用できる
+✅ アクセシブルなカスタムフォーム要素を作成できる
+
 **JavaScript編：**
 ✅ モダンなJavaScriptの構文を理解し、使いこなせる
 ✅ 非同期処理（Promise、async/await）を正しく扱える
@@ -379,8 +401,17 @@ MITライセンス - 詳細は [LICENSE](./LICENSE) ファイルを参照して�
 
 ## さあ、始めましょう！
 
-初学者の方は [HTML 画像最適化編](./docs/html/01-image-optimization/README.md) から、
+**初学者の方へ：**
 
-JavaScriptを集中的に学びたい方は [JavaScript 基礎編](./docs/javascript/01-basics/README.md) から始めてください。
+Web開発の基本構造に沿って、まずは [HTML 画像最適化編](./docs/01-html/01-image-optimization/README.md) から始めましょう。
+HTML編を一通り学んだら、次に [CSS Layout編](./docs/02-css/01-layout/README.md) でレイアウトを学び、
+最後に [JavaScript 基礎編](./docs/03-javascript/01-basics/README.md) で動的な機能を追加する方法を学びます。
 
-頑張ってください！ 🚀
+**経験者の方へ：**
+
+既にWeb開発の経験がある方は、興味のある分野から学習を始めてください。
+- HTMLをより深く学びたい → [HTML 画像最適化編](./docs/01-html/01-image-optimization/README.md)
+- CSSの最新技術を学びたい → [CSS Layout編](./docs/02-css/01-layout/README.md)
+- JavaScriptを強化したい → [JavaScript 基礎編](./docs/03-javascript/01-basics/README.md)
+
+それぞれの道で、充実した学習を！ 🚀
